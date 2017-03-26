@@ -25,5 +25,7 @@ KTCS Admins have the following abilities:
 * Member Comment Response
 ###### Authors
 Michael Sakamoto
+
 Ito (Jose) Matsuda
+
 Jack (Yilun) Xiao
