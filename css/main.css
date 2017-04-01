@@ -1,0 +1,137 @@
+/* KTSC Stylesheet */
+
+html {
+	height: 100%;
+}
+
+body {
+	font-family: 'Quicksand', sans-serif;
+	color: #FFFFFF;
+	text-align: center;
+	overflow-x: hidden;
+}
+
+h1 {
+
+	font-size: 6em;
+}
+
+p {
+	font-size: 1.3em;
+}
+
+a {
+	color: #00FF7F;
+	-webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+a:hover {
+	text-decoration: none;
+	color:#FFF;
+}
+
+a:visited {
+	color:rgb(135,206,235);
+}
+
+input[type=text] {
+    max-width: 300px;
+    padding: 5px 5px;
+    margin: 1px 0;
+    box-sizing: border-box;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    border: solid 1px rgba(0,0,0,0);
+    border-radius: 6px;
+    outline: none;
+}
+
+input[type=text]:focus {
+	border: solid 1px #00FF7F;
+}
+
+input[type=submit] {
+	background: rgba(135, 206, 235,0.5);
+	border-radius: 10px;
+	border: solid 1px rgba(0,0,0,0);
+	padding: 5px 10px;
+	-webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+input[type=submit]:focus {
+	outline: none;
+}
+
+input[type=submit]:hover {
+	background: rgba(135,206,235,1);
+}
+
+input[type=submit]:active {
+	-webkit-transition: 0.1s;
+	transition: 0.1s;
+	border: #FFF solid 1px;
+}
+
+#loading-cover {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top:0;
+	left: 0;
+	background: #FFFFFF;
+	z-index:99;
+}
+
+.login-window {
+	padding-top: 15px;
+	position: relative;
+	padding-bottom: 20px;
+	border: none;
+	border-radius: 10px;
+	background: rgba(0,0,0,0.5);
+	max-width:320px;
+	margin: 0 auto;
+	float: none;
+	display: inline-block;
+}
+
+.quote {
+	padding-bottom: 10px;
+}
+
+#register-prompt {
+	padding-top: 20px;
+}
+
+#u-name{
+	color: #000;
+}
+
+#p-word {
+	color: #000;
+}
+
+#sign-in {
+	padding-top: 20px;
+}
+
+.landing {
+	background: url('../img/landing-bg.jpg') no-repeat center center fixed;
+	background-size: cover;
+	position: fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    height:100%;
+    width:100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.company {
+	padding-top: 20px;
+}
