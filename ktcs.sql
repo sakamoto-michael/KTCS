@@ -1,3 +1,21 @@
+-- phpMyAdmin SQL Dump
+-- version 4.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 02, 2017 at 08:54 PM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 5.6.28
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
 -- Database: `ktcs`
 --
@@ -91,18 +109,19 @@ CREATE TABLE `ktcs members` (
   `DLN` int(10) NOT NULL,
   `Monthly Membership Fee` int(6) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL
+  `password` varchar(20) NOT NULL,
+  `isAdmin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ktcs members`
 --
 
-INSERT INTO `ktcs members` (`Name`, `Address`, `Phone Number`, `Email`, `DLN`, `Monthly Membership Fee`, `username`, `password`) VALUES
-('Michael Bay', '99 University Ave', 6130009988, 'explosions@hotmail.com', 990088, 30, 'lovemovies', 'imfamous'),
-('Susan Bethesda', '100 Johnson', 1234567890, 'bethesda@gmail.com', 11223344, 30, 'user1', 'hunter2'),
-('Gabe Newell', '23 Alfred St', 2147483647, 'sadPanda@gmail.com', 55667788, 30, 'gaben', 'praiseMe'),
-('Jeff Kaplan', '420 Division', 9059119090, 'wrestleWJff@gmail.ca', 99887766, 30, 'jeff_kaplan', 'hanzo');
+INSERT INTO `ktcs members` (`Name`, `Address`, `Phone Number`, `Email`, `DLN`, `Monthly Membership Fee`, `username`, `password`, `isAdmin`) VALUES
+('Michael Bay', '99 University Ave', 6130009988, 'explosions@hotmail.com', 990088, 30, 'lovemovies', 'imfamous', 0),
+('Susan Bethesda', '100 Johnson', 1234567890, 'bethesda@gmail.com', 11223344, 30, 'user1', 'hunter2', 0),
+('Gabe Newell', '23 Alfred St', 2147483647, 'sadPanda@gmail.com', 55667788, 30, 'gaben', 'praiseMe', 1),
+('Jeff Kaplan', '420 Division', 9059119090, 'wrestleWJff@gmail.ca', 99887766, 30, 'jeff_kaplan', 'hanzo', 1);
 
 -- --------------------------------------------------------
 
