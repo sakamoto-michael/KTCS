@@ -1,13 +1,24 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Welcome member!</title>
-        <!-- This will be used to make a new member -->
-  		<!-- not checking for duplicated information -->
-  		<!-- FINISHED LMAOOO --> 
+    <meta charset="utf-8">
+      <meta http-equiv="X UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+      <meta name="description" content="Kingston Car Share (K-Town Car Share) Registration">
+      <meta name="author" content="Michael Sakamoto, Ito (Jose) Matsuda, Jack (Yilun) Xiao">
+      <title>KTCS Registration</title>
+
+      <!-- Bootstrap Base CSS -->
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <!-- Animate.css -->
+         <link rel="stylesheet" type="text/css" href="css/animate.css">
+      <!-- Custom Page Styling CSS -->
+         <link rel="stylesheet" type="text/css" href="css/registration.css">
+      <!-- Page Fonts -->
+         <link href="https://fonts.googleapis.com/css?family=Quicksand:300" rel="stylesheet">
     </head>
 <body>
-<h1>Welcome New member </h1>
+
 <?php
 //Create a user session or resume an existing one
 session_start();
@@ -88,59 +99,53 @@ if(isset($_POST['returnBtn'])){
 ?>
 
 <!-- HTML form here -->
-
-
-<form name='createProfile' id='createProfile' action='newMember.php' method='post'>
-    <table border='0'>
-        <tr>
-        <tr>
-            <td>Enter your NAME</td>
-             <td><input type='text' name='Name' id='Name'/></td>
-        </tr>
-            <td>Make a Username</td>
-            <td><input type='text' name='username' id='username'/></td>
-        </tr>
-        <tr>
-            <td>Create a Password</td>
-             <td><input type='text' name='password' id='password'/></td>
-        </tr>
-		<tr>
-            <td>Enter your email</td>
-            <td><input type='text' name='Email' id='Email' /></td>
-        </tr>
-        <tr>
-            <td>Enter your Address</td>
-            <td><input type='text' name='Address' id='Address' /></td>
-        </tr>
-        <tr>
-            <td>Enter your Phone Number (no dashes)</td>
-            <td><input type='text' name='Phone Number' id='Phone Number' /></td>
-        </tr>
-        <tr>
-            <td>Enter your Drivers License Number</td>
-            <td><input type='text' name='DLN' id='DLN' /></td>
-        </tr>
+<div class="container-fluid registration-layout">
+    <div class="row">
+    <h1>K-Town Car Share</h1>
+    <div class="col-md-6" id="registration-box">
+        <h2><b>Let's get started.</b></h2>
+    <form name='createProfile' id='createProfile' action='newMember.php' method='post'>
+    <div id="reg-wrapper">
+        <p>
+            <label>Name</label>
+            <input type='text' name='Name' id='Name'/>
+        </p>
+        <p>
+            <label>Username</label>
+            <input type='text' name='username' id='username'/>
+        </p>
+        <p>
+            <label>Password</label>
+            <input type='password' name='password' id='password'/>
+        </p>
+		<p>
+            <label>E-mail</label>
+            <input type='text' name='Email' id='Email' />
+        </p>
+        <p>
+            <label>Address</label>
+            <input type='text' name='Address' id='Address' />
+        </p>
+        <p>
+            <label>Phone Number (Only Numbers)</label>
+            <input type='text' name='Phone Number' id='Phone Number' />
+        </p>
+        <p>
+            <label>Driver's License Number</label>
+            <input type='text' name='DLN' id='DLN' />
+        </p>
         <!-- Submit -->
-        <tr>
-            <td></td>
-            <td>
-                <input type='submit' name='newMemberBtn' id='newMemberBtn' value='Register' /> 
-            </td>
-        </tr>
-    </table>
-</form>
+        <p>
+            <input type='submit' name='newMemberBtn' id='newMemberBtn' value='Register' />
+        </p>
+    </div>
+    </form>
+    </div>
 
-<h3>Press to return to Login screen</h3>
-<form name='returnPrev' id='returnPrev' action='locations.php' method='post'>
-    <table border='0'>
-        <!-- Submit -->
-        <tr>
-            <td></td>
-            <td>
-                <input type='submit' name='returnBtn' id='returnBtn' value='Return' /> 
-            </td>
-        </tr>
-    </table>
-</form>
+    <form name='returnPrev' id='returnPrev' action='index.php' method='post'>
+        <input type='submit' name='returnBtn' id='returnBtn' value='Return To Login'/>
+    </form>
+    </div>
+</div>
 </body>
 </html>

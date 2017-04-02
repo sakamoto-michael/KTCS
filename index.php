@@ -18,6 +18,7 @@
          <link href="https://fonts.googleapis.com/css?family=Quicksand:300" rel="stylesheet">
   </head>
 <body>
+
  <?php
   //Create a user session or resume an existing one
  session_start();
@@ -50,19 +51,6 @@ if(isset($_POST['registerBtn'])){
     include_once 'config/connection.php';
 	//Redirect the browser to the profile editing page and kill this page.
 	header("Location: newMember.php");
-	die("Lul died");
- }
- ?>
-
-
-<!-- USE THIS TO TEST VARIOUS PAGES -->
-<?php
-//check if the login form has been submitted
-if(isset($_POST['testBtn'])){
-    // include database connection
-    include_once 'config/connection.php';
-	//Redirect the browser to the profile editing page and kill this page.
-	header("Location: locations.php");
 	die("Lul died");
  }
  ?>
@@ -144,13 +132,13 @@ if(isset($_POST['loginBtn'])){
         <form name='login' id='login' action='index.php' method='post'>
   				<h2 class="wow fadeIn" data-wow-delay="0.4s">Sign In</h2>
   				<div id="u-name" class="wow fadeIn" data-wow-delay="0.45s">
-  					<input type="text" placeholder="Username" id="username">
+  					<input type="text" placeholder="Username" name='username' id="username" />
   				</div>
   				<div id="p-word" class="wow fadeIn" data-wow-delay="0.5s">
-  					<input type="password" placeholder="Password" id="password">
+  					<input type="password" placeholder="Password" name='password' id="password" />
   				</div>
   				<div id="sign-in" class="wow fadeIn" data-wow-delay="0.55s">
-  					<input type="submit" id="adminLoginBtn" name="loginBtn" value="Connect">
+  					<input type="submit" id="loginBtn" name="loginBtn" value="Connect" />
   				</div>
   				<div id="register-prompt">
   					<p class="wow fadeIn" data-wow-delay="0.6s"> Not a member? Sign up

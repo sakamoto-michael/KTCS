@@ -1,0 +1,126 @@
+/* KTCS Registration Page CSS */
+
+html {
+	height: 100%;
+}
+
+body {
+	font-family: 'Quicksand', sans-serif;
+	text-align: center;
+	overflow-x: hidden;
+	color: #FFF;
+}
+
+h1 { 
+	font-size: 6em; 
+	padding-bottom:15px;
+	color:#FFF;
+}
+
+h2 {
+	font-size: 2.5em;
+	padding-bottom: 10px;
+}
+
+p {
+	font-size: 1em;
+}
+
+a {
+	color: #00FF7F;
+}
+
+form {
+	display: block;
+}
+
+label {
+	display: block;
+	float: left;
+	margin-right: 1em;
+	color: #DDD;
+}
+
+input[type=text], input[type=password] {
+	border:2px solid #D3D3D3;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+	outline: none;
+	border: 2px solid #00FF7F;
+}
+
+.registration-layout {
+	background: url('../img/landing-bg2.jpg') no-repeat center center fixed;
+	background-size: cover;
+	position: fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    height:100%;
+    width:100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#registration-box {
+	padding-top: 15px;
+	position: relative;
+	padding-bottom: 20px;
+	border: none;
+	border-radius: 10px;
+	background: rgba(0,0,0,0.5);
+	max-width:320px;
+	margin: 0 auto;
+	float: none;
+	display: inline-block;
+}
+
+#reg-wrapper {
+	padding-right: 30px;
+	padding-left: 30px;
+}
+
+#reg-wrapper input{
+	width: 100%;
+}
+
+input{
+	color: #000;
+}
+
+input[type=submit] {
+	background: rgba(135, 206, 235,0.5);
+	border-radius: 10px;
+	border: solid 1px rgba(0,0,0,0);
+	padding: 5px 10px;
+	-webkit-transition: 0.5s;
+    transition: 0.5s;
+    color:#FFF;
+}
+
+input[type=submit]:focus {
+	outline: none;
+}
+
+input[type=submit]:hover {
+	background: rgba(135,206,235,1);
+}
+
+input[type=submit]:active {
+	-webkit-transition: 0.1s;
+	transition: 0.1s;
+	border: #FFF solid 1px;
+}
+
+#submit {
+	padding-top: 20px;
+}
+
+#returnPrev {
+	padding-top: 10px;
+}
