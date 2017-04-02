@@ -1,21 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
---
--- Host: 127.0.0.1
--- Generation Time: Apr 02, 2017 at 08:39 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 5.6.28
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Database: `ktcs`
 --
@@ -30,7 +12,7 @@ CREATE TABLE `car` (
   `VIN` int(20) NOT NULL,
   `Model` varchar(40) NOT NULL,
   `Year` year(4) NOT NULL,
-  `Location` varchar(40) NOT NULL,
+  `Address` varchar(40) NOT NULL,
   `Daily Rental Fee` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -38,14 +20,14 @@ CREATE TABLE `car` (
 -- Dumping data for table `car`
 --
 
-INSERT INTO `car` (`VIN`, `Model`, `Year`, `Location`, `Daily Rental Fee`) VALUES
-(10148977, 'Dodge Grand Caravan', 2012, 'King St', 55),
-(11111111, 'Honda Civic', 2016, 'Division St', 60),
-(12298765, 'Mercedes Benz', 2011, 'King St', 50),
-(12345678, 'Honda Accord', 2010, 'Princess St', 50),
-(14165780, 'Toyota Corolla', 2016, 'King St', 55),
-(14780922, 'Hyundai Sonata', 2011, 'Princess St', 50),
-(44143764, 'Ford F-150', 2014, 'Division St', 70);
+INSERT INTO `car` (`VIN`, `Model`, `Year`, `Address`, `Daily Rental Fee`) VALUES
+(10148977, 'Dodge Grand Caravan', 2012, '54 King Street', 55),
+(11111111, 'Honda Civic', 2016, '47 Division Street', 60),
+(12298765, 'Mercedes Benz', 2011, '54 King Street', 50),
+(12345678, 'Honda Accord', 2010, '420 Princess Street', 50),
+(14165780, 'Toyota Corolla', 2016, '54 King Street', 55),
+(14780922, 'Hyundai Sonata', 2011, '420 Princess Street', 50),
+(44143764, 'Ford F-150', 2014, '47 Division Street', 70);
 
 -- --------------------------------------------------------
 
