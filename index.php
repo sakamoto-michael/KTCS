@@ -1,10 +1,11 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>KTCS</title>
+        <title>KTCS home page</title>
   
     </head>
 <body>
+<h2> Home Page </h2>
 
  <?php
   //Create a user session or resume an existing one
@@ -15,20 +16,21 @@
  //check if the user clicked the logout link and set the logout GET parameter
 if(isset($_GET['logout'])){
 	//Destroy the user's session.
-	$_SESSION['id']=null;
+	//$_SESSION['id']=null; // get outta here duude
 	session_destroy();
 }
  ?>
  
  
- <?php
+<!--  <?php
  //check if the user is already logged in and has an active session
-if(isset($_SESSION['id'])){
+//if(isset($_SESSION['id'])){
 	//Redirect the browser to the profile editing page and kill this page.
-	header("Location: profile.php");
-	die();
-}
- ?>
+	//could just do away with this shenanigans and always have them login (safety kappa)
+//	header("Location: profile.php");
+//	die();
+//}
+ ?> -->
  
 <!-- REGISTER -->
 <?php
@@ -43,7 +45,7 @@ if(isset($_POST['registerBtn'])){
  ?>
 
 
-<!-- Test buttons -->
+<!-- USE THIS TO TEST VARIOUS PAGES -->
 <?php
 //check if the login form has been submitted
 if(isset($_POST['testBtn'])){
@@ -63,47 +65,44 @@ if(isset($_POST['loginBtn'])){
  
     // include database connection
     include_once 'config/connection.php'; 
-	
+	$users_UName = $_POST['username'];
+	$users_pass = $_POST['password'];
+	$users_UName = mysql_real_escape_string($users_UName);
+	$users_pass = mysql_real_escape_string($users_pass);
 	// SELECT query
-        $query = "SELECT id,username, 'e-mail' FROM user WHERE username=? AND password=?";
- 
-        // prepare query for execution
-        if($stmt = $con->prepare($query)){
-		
-        // bind the parameters. This is the best way to prevent SQL injection hacks.
-        $stmt->bind_Param("ss", $_POST['username'], $_POST['password']);
-         
-        // Execute the query
-		$stmt->execute();
- 
-		/* resultset */
-		$result = $stmt->get_result();
-
-		// Get the number of rows returned
-		$num = $result->num_rows;;
-		
-		if($num>0){
-			//If the username/password matches a user in our database
-			//Read the user details
-			$myrow = $result->fetch_assoc();
-			//Create a session variable that holds the user's id
-			//$_SESSION['id'] = $myrow['id'];
-			//Redirect the browser to the profile editing page and kill this page.
-			header("Location: newMember.php"); // replace this later
-			die("Lul died");
-		} else {
-			//If the username/password doesn't matche a user in our database
-			// Display an error message and the login form
-			echo "Failed to login";
-		}
-		} else {
-			echo "failed to prepare the SQL";
-		}
- }
- 
+    $query = "SELECT name,isAdmin FROM `ktcs members` WHERE username='$users_UName' AND password='$users_pass'";
+    // Check to see if there is one that matches
+	// http://php.net/manual/en/mysqli-result.fetch-assoc.php
+    $result = mysqli_query($con,$query);
+    if(!$result){ // If nothing was found
+    	$message = "Incorrect username or password";
+		echo "<script type='text/javascript'>alert('$message');</script>";
+		// echo "Could not successfully run query ($query) from DB: " . mysql_error();
+    }
+    // Should only be one result
+    // put it into a variable each
+    // could make the name the sessionID for all i care
+    while ($row = $result->fetch_assoc()){
+		$theName = $row["name"]; // this gets it lmao
+		$adminPerm = $row["isAdmin"];
+	}
+	echo $theName;
+	echo $adminPerm;
+    if ($adminPerm == 0) {
+    	// if a normal user
+    	header("Location: locations.php"); // change this to go to some main page user
+		die("Lul died");
+    }
+    else{ // else they are an admin
+    	header("Location: adminHome.php");
+    	die("lmao");
+    }
+    // error check
+}
 ?>
 
 <!-- dynamic content will be here -->
+<h4> Member Login </h4>
  <form name='login' id='login' action='index.php' method='post'>
     <table border='0'>
         <tr>
@@ -117,13 +116,13 @@ if(isset($_POST['loginBtn'])){
         <tr>
             <td></td>
             <td>
-                <input type='submit' id='loginBtn' name='loginBtn' value='Log In' /> 
+                <input type='submit' id='adminLoginBtn' name='loginBtn' value='Log In' /> 
             </td>
         </tr>
     </table>
 </form>
 
-<h1>SUP</h1>
+<h4>New Here?</h4>
 <form name='register' id='register' action='index.php' method='post'>
 	<table border='0'>
 		<tr>
@@ -135,7 +134,7 @@ if(isset($_POST['loginBtn'])){
 </form>
 
 
-<!-- Test buttons -->
+<!-- Test buttons to test out functions -->
 <h1>TEST</h1>
 <form name='test' id='test' action='index.php' method='post'>
 	<table border='0'>
