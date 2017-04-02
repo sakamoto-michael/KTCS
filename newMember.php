@@ -10,7 +10,6 @@
 <?php
 //Create a user session or resume an existing one
 session_start();
-mysql_query("USE ktcs");
 ?>
 
 <!-- Insert the user into our database -->
@@ -26,6 +25,7 @@ mysql_query("USE ktcs");
     include_once 'config/connection.php';
 	// Assign variables?
 	// http://www.inmotionhosting.com/support/edu/website-design/using-php-and-mysql/php-insert-database
+	// http://php.net/manual/en/function.mysql-query.php
 	// see whats in array
 	// foreach (array_keys($_POST) as $randy){
 	// 	echo "$randy";
@@ -48,10 +48,13 @@ mysql_query("USE ktcs");
 	//$users_MMF = mysql_real_escape_string($users_MMF);
 
 	// $query = "INSERT INTO 'ktcs members'('Name','Address','Phone Number','Email','DLN','Monthly Membership Fee') VALUES ('$users_Name','$users_Address',$users_Phone,'$users_Email',$users_DLN,$users_MMF)";
-	$query = sprintf("INSERT INTO ktcs members('Name','Address','Phone Number','Email','DLN','Monthly Membership Fee') VALUES ('%s','%s',%d,'%s',%d,%d)",
+	$query = sprintf("INSERT INTO `ktcs members`(`Name`,`Address`,`Phone Number`,`Email`,`DLN`,`Monthly Membership Fee`) VALUES ('%s','%s',%d,'%s',%d,%d)",
     ($users_Name),($users_Address),($users_Phone),($users_Email),($users_DLN),($users_MMF));
-	$result = mysql_query($query);
-	echo "hi";
+    // echo $query;
+	// $result = $con($query); // dont use mysql_query use for db
+	$result = mysqli_query($con,$query);
+
+	//echo "hi";
 
 	//Error check verry nice
 	if (!$result) {
