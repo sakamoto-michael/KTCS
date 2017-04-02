@@ -1,7 +1,7 @@
 <?php
 // used to connect to the database
 $host = "localhost";
-$db_name = "cisc332db";
+$db_name = "ktcs";
 $username = "admin";
 $password = "admin";
 
