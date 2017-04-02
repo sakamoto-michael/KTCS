@@ -4,6 +4,7 @@
         <title>Welcome member!</title>
         <!-- This will be used to make a new member -->
   		<!-- not checking for duplicated information -->
+  		<!-- FINISHED LMAOOO --> 
     </head>
 <body>
 <h1>Welcome New member </h1>
@@ -71,7 +72,14 @@ session_start();
 	// die();
  ?>
 
-<!-- -->
+<!-- Return home --> 
+<?php
+if(isset($_POST['returnBtn'])){
+	session_destroy();
+	header("Location: index.php"); // or wherever you want it to return
+	die(); 
+	}
+?>
 
 <!-- HTML form here -->
 
@@ -111,6 +119,19 @@ session_start();
             <td></td>
             <td>
                 <input type='submit' name='newMemberBtn' id='newMemberBtn' value='Register' /> 
+            </td>
+        </tr>
+    </table>
+</form>
+
+<h3>Press to return to Login screen</h3>
+<form name='returnPrev' id='returnPrev' action='locations.php' method='post'>
+    <table border='0'>
+        <!-- Submit -->
+        <tr>
+            <td></td>
+            <td>
+                <input type='submit' name='returnBtn' id='returnBtn' value='Return' /> 
             </td>
         </tr>
     </table>

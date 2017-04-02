@@ -2,8 +2,8 @@
 <html>
     <head>
         <title>KTCS Locations</title>
-        <!-- This will be used to make a new member -->
-  		<!-- not checking for duplicated information -->
+  		<!-- Returns all of the locations that KTCS has  -->
+  		<!-- finished i think -->
     </head>
 <body>
 <h1>Here are the locations</h1>
@@ -17,52 +17,21 @@ session_start();
 <?php
   // include database connection
     include_once 'config/connection.php'; 
-	$query = "SELECT * FROM 'parking location'";
-	// prepare query for execution
-        if($stmt = $con->prepare($query)){
-		
-        // bind the parameters. This is the best way to prevent SQL injection hacks.
-        $stmt->bind_Param();
-        // Execute the query
-		$stmt->execute();
-		/* resultset */
-		$result = $stmt->get_result();
-		// Get the number of rows returned
-		$num = $result->num_rows;;
-		
-		if($num>0){
-			//If the username/password matches a user in our database
-			//Read the user details
-			$myrow = $result->fetch_assoc();
-			//Create a session variable that holds the user's id
-			//$_SESSION['id'] = $myrow['id'];
-			echo $myrow['Address'];
-			//Redirect the browser to the profile editing page and kill this page.
-		} else {
-			echo "Failed to login";
-			}
+	$query = "SELECT * FROM `parking location`";
+	// http://php.net/manual/en/mysqli-result.fetch-assoc.php
+    $result = mysqli_query($con,$query);
+    // error check
+    if (!$result) {
+    echo "Could not successfully run query ($query) from DB: " . mysql_error();
+    exit;
+}
+	if ($result = $con->query($query)){
+		while ($row = $result->fetch_assoc()){
+			printf("Address %s \t Spaces Available (%d)", $row["Address"],$row["Number of Spaces"]);
+			echo "<br>";
 		}
-		 else {
-			echo "failed to prepare the SQL";
-		}
-	//$stmt = $con->prepare($query);	$stmt->bind_param();
-	// Execute the query
-	// $results = mysqli_query($query);
-	// var_dump($results);
-
-	// if (!$results->query("SET @a:='this will not work'")) {
- //  	printf("Error: %s\n", $results->error);
- //  	die();
-	// }
-
-	// $results2 = mysqli_query($query);
-	// var_dump($results2);
-	//echo $query;
-	// $result = mysql_query($query);
-	// while($row = mysql_fetch_array($result)) {
-	// echo $row['Address'];
-	// echo $row['Number of Spaces'];	
-//}
+	}
+	// optional clean up here if you want, go to site linked above
 ?>
 
 <?php
