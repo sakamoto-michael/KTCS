@@ -16,12 +16,12 @@ session_start();
 
 <!-- Add a car to a fleet -->
 <form name='adminHome' id='adminHome' action='adminHome.php' method='post'>
-    <table border='0'>       
+    <table border='0'>
         <!-- Submit -->
         <tr>
             <td></td>
             <td>
-                <input type='submit' name='newCarBtn' id='newCarBtn' value='Add a new Car' /> 
+                <input type='submit' name='newCarBtn' id='newCarBtn' value='Add a new Car' />
             </td>
         </tr>
     </table>
@@ -39,16 +39,16 @@ $query = "";
 // also need to see how long they had it for
 ?>
 <form name='monthlyInvoice' id='monthlyInvoice' action='adminHome.php' method='post'>
-    <table border='0'> 
+    <table border='0'>
       <tr>
             <td>Enter the member DLN</td>
              <td><input type='text' name='memberID' id='memberID'/></td>
-        </tr>      
+        </tr>
         <!-- Submit -->
         <tr>
             <td></td>
             <td>
-                <input type='submit' name='invoiceBtn' id='invoiceBtn' value='Generate an Invoice' /> 
+                <input type='submit' name='invoiceBtn' id='invoiceBtn' value='Generate an Invoice' />
             </td>
         </tr>
     </table>
@@ -78,16 +78,16 @@ while($row = mysql_fetch_assoc($result)){
 }
 ?>
 <form name='carHist' id='carHist' action='adminHome.php' method='post'>
-    <table border='0'> 
+    <table border='0'>
       <tr>
             <td>Enter the car ID</td>
              <td><input type='text' name='carID' id='carID'/></td>
-        </tr>      
+        </tr>
         <!-- Submit -->
         <tr>
             <td></td>
             <td>
-                <input type='submit' name='carHistBtn' id='carHistBtn' value='Show a car rental history' /> 
+                <input type='submit' name='carHistBtn' id='carHistBtn' value='Show a car rental history' />
             </td>
         </tr>
     </table>

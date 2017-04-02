@@ -12,7 +12,8 @@ body {
 }
 
 h1 {
-
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: black;
 	font-size: 6em;
 }
 
@@ -23,7 +24,7 @@ p {
 a {
 	color: #00FF7F;
 	-webkit-transition: 0.5s;
-    transition: 0.5s;
+  transition: 0.5s;
 }
 
 a:hover {
@@ -33,6 +34,20 @@ a:hover {
 
 a:visited {
 	color:rgb(135,206,235);
+}
+
+.btn-link{
+  border:none;
+  outline:none;
+  background:none;
+  cursor:pointer;
+	color: #00FF7F;
+	-webkit-transition: 0.5s;
+  transition: 0.5s;
+  padding:0;
+  text-decoration:none;
+  font-family:inherit;
+  font-size:inherit;
 }
 
 input[type=text] {
@@ -48,6 +63,21 @@ input[type=text] {
 }
 
 input[type=text]:focus {
+	border: solid 1px #00FF7F;
+}
+input[type=password] {
+    max-width: 300px;
+    padding: 5px 5px;
+    margin: 1px 0;
+    box-sizing: border-box;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    border: solid 1px rgba(0,0,0,0);
+    border-radius: 6px;
+    outline: none;
+}
+
+input[type=password]:focus {
 	border: solid 1px #00FF7F;
 }
 
