@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2017 at 07:19 PM
+-- Generation Time: Apr 02, 2017 at 08:39 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -39,9 +39,13 @@ CREATE TABLE `car` (
 --
 
 INSERT INTO `car` (`VIN`, `Model`, `Year`, `Location`, `Daily Rental Fee`) VALUES
-(11234, 'Mercedes Benz', 2011, 'King St', 50),
+(10148977, 'Dodge Grand Caravan', 2012, 'King St', 55),
 (11111111, 'Honda Civic', 2016, 'Division St', 60),
-(12345678, 'Honda Accord', 2010, 'Princess St', 50);
+(12298765, 'Mercedes Benz', 2011, 'King St', 50),
+(12345678, 'Honda Accord', 2010, 'Princess St', 50),
+(14165780, 'Toyota Corolla', 2016, 'King St', 55),
+(14780922, 'Hyundai Sonata', 2011, 'Princess St', 50),
+(44143764, 'Ford F-150', 2014, 'Division St', 70);
 
 -- --------------------------------------------------------
 
@@ -50,7 +54,7 @@ INSERT INTO `car` (`VIN`, `Model`, `Year`, `Location`, `Daily Rental Fee`) VALUE
 --
 
 CREATE TABLE `car maintenance history` (
-  `Car` varchar(20) NOT NULL,
+  `VIN` varchar(20) NOT NULL,
   `Date` date NOT NULL,
   `Odometer Reading` int(7) NOT NULL,
   `Maintenance Type` char(15) NOT NULL,
@@ -61,10 +65,10 @@ CREATE TABLE `car maintenance history` (
 -- Dumping data for table `car maintenance history`
 --
 
-INSERT INTO `car maintenance history` (`Car`, `Date`, `Odometer Reading`, `Maintenance Type`, `Description`) VALUES
-('00011234', '2015-10-21', 78000, 'repair', 'hunter2'),
-('11111111', '2016-09-12', 42000, 'body work', 'hello test 123'),
-('12345678', '2016-12-25', 69000, 'repair', 'Sup');
+INSERT INTO `car maintenance history` (`VIN`, `Date`, `Odometer Reading`, `Maintenance Type`, `Description`) VALUES
+('10148977', '2015-10-21', 78000, 'Bumper Repair', 'Scratched, minor dents.'),
+('11111111', '2016-09-12', 41997, 'Tires', 'One flat tired (popped), replacement.'),
+('12345678', '2016-12-25', 69000, 'Engine', 'Engine repair.');
 
 -- --------------------------------------------------------
 
@@ -73,7 +77,7 @@ INSERT INTO `car maintenance history` (`Car`, `Date`, `Odometer Reading`, `Maint
 --
 
 CREATE TABLE `car rental history` (
-  `Car` varchar(40) NOT NULL,
+  `VIN` varchar(40) NOT NULL,
   `Pick-up Odometer Reading` int(7) NOT NULL,
   `Drop-off Odometer Reading` int(7) NOT NULL,
   `Return Status` text NOT NULL,
@@ -85,11 +89,11 @@ CREATE TABLE `car rental history` (
 -- Dumping data for table `car rental history`
 --
 
-INSERT INTO `car rental history` (`Car`, `Pick-up Odometer Reading`, `Drop-off Odometer Reading`, `Return Status`, `MemberID`, `Date`) VALUES
-('00011234', 220, 271, 'damaged', 55667788, '2020-08-20'),
-('11111111', 11, 30, 'damaged', 11223344, '2017-01-16'),
-('11111111', 10, 11, 'not running', 99887766, '2017-01-12'),
-('12345678', 69900, 70000, 'normal', 11223344, '2016-09-10');
+INSERT INTO `car rental history` (`VIN`, `Pick-up Odometer Reading`, `Drop-off Odometer Reading`, `Return Status`, `MemberID`, `Date`) VALUES
+('10148977', 77900, 78000, 'Front bumper damaged.', 55667788, '2015-10-14'),
+('11111111', 41800, 41991, 'One flat tire.', 11223344, '2016-09-09'),
+('11111111', 39000, 40109, 'Stained chairs.', 99887766, '2017-01-12'),
+('12345678', 69900, 70000, 'Normal', 11223344, '2016-09-10');
 
 -- --------------------------------------------------------
 
@@ -100,8 +104,8 @@ INSERT INTO `car rental history` (`Car`, `Pick-up Odometer Reading`, `Drop-off O
 CREATE TABLE `ktcs members` (
   `Name` varchar(20) NOT NULL,
   `Address` varchar(40) NOT NULL,
-  `Phone Number` int(13) NOT NULL,
-  `Email` varchar(20) DEFAULT NULL,
+  `Phone Number` bigint(13) NOT NULL,
+  `Email` varchar(36) DEFAULT NULL,
   `DLN` int(10) NOT NULL,
   `Monthly Membership Fee` int(6) NOT NULL,
   `username` varchar(20) NOT NULL,
@@ -113,9 +117,10 @@ CREATE TABLE `ktcs members` (
 --
 
 INSERT INTO `ktcs members` (`Name`, `Address`, `Phone Number`, `Email`, `DLN`, `Monthly Membership Fee`, `username`, `password`) VALUES
+('Michael Bay', '99 University Ave', 6130009988, 'explosions@hotmail.com', 990088, 30, 'lovemovies', 'imfamous'),
 ('Susan Bethesda', '100 Johnson', 1234567890, 'bethesda@gmail.com', 11223344, 30, 'user1', 'hunter2'),
 ('Gabe Newell', '23 Alfred St', 2147483647, 'sadPanda@gmail.com', 55667788, 30, 'gaben', 'praiseMe'),
-('Jeff Kaplan', '420 Division', 2147483647, 'wrestleWJff@gmail.ca', 99887766, 30, 'jeff_kaplan', 'hanzo');
+('Jeff Kaplan', '420 Division', 9059119090, 'wrestleWJff@gmail.ca', 99887766, 30, 'jeff_kaplan', 'hanzo');
 
 -- --------------------------------------------------------
 
@@ -133,9 +138,10 @@ CREATE TABLE `parking location` (
 --
 
 INSERT INTO `parking location` (`Address`, `Number of Spaces`) VALUES
-('123 Division', 45),
-('420 Princess', 50),
-('54 King', 40);
+('151 Bath Road', 30),
+('420 Princess Street', 50),
+('47 Division Street', 45),
+('54 King Street', 40);
 
 -- --------------------------------------------------------
 
@@ -156,9 +162,9 @@ CREATE TABLE `rental comments` (
 --
 
 INSERT INTO `rental comments` (`MemberID`, `Model`, `Rating`, `Comment Text`, `VIN`) VALUES
-(11223344, 'Honda Accord', 4, 'Qwerty', 12345678),
-(55667788, 'Mercedes Benz', 4, 'Good', 11234),
-(99887766, 'Honda Civic', 5, 'Naisu', 111111111);
+(11223344, 'Honda Accord', 4, 'Good car, lots of space. Good on gas.', 12345678),
+(55667788, 'Mercedes Benz', 4, 'Good car.', 12298765),
+(99887766, 'Honda Civic', 5, 'Nice!!', 111111111);
 
 -- --------------------------------------------------------
 
@@ -169,7 +175,7 @@ INSERT INTO `rental comments` (`MemberID`, `Model`, `Rating`, `Comment Text`, `V
 CREATE TABLE `reservation` (
   `Reservation Number` int(10) NOT NULL,
   `MemberID` int(10) NOT NULL,
-  `Car` varchar(20) NOT NULL,
+  `VIN` varchar(20) NOT NULL,
   `Date` date NOT NULL,
   `Access Code` varchar(20) NOT NULL,
   `Length of Reservation` int(2) NOT NULL
@@ -179,30 +185,11 @@ CREATE TABLE `reservation` (
 -- Dumping data for table `reservation`
 --
 
-INSERT INTO `reservation` (`Reservation Number`, `MemberID`, `Car`, `Date`, `Access Code`, `Length of Reservation`) VALUES
-(11122233, 11223344, '11111111', '2017-01-13', 'sup', 3),
-(12345679, 11223344, '12345678', '2017-03-02', 'password', 5),
-(23231414, 55667788, '11234', '2017-01-21', 'heyyo', 8),
-(87654321, 99887766, '11111111', '2016-05-21', 'hunter42', 10);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `e-mail` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`username`, `password`, `e-mail`) VALUES
-('jeff', 'kaplan', 'hello');
+INSERT INTO `reservation` (`Reservation Number`, `MemberID`, `VIN`, `Date`, `Access Code`, `Length of Reservation`) VALUES
+(11122233, 11223344, '11111111', '2017-01-13', 'ABXD', 3),
+(12345679, 11223344, '12345678', '2017-03-02', 'PSSW', 5),
+(23231414, 55667788, '12298765', '2017-01-21', 'HYYOP', 8),
+(87654321, 99887766, '11111111', '2016-05-21', 'X4YNZ', 10);
 
 --
 -- Indexes for dumped tables
@@ -218,13 +205,13 @@ ALTER TABLE `car`
 -- Indexes for table `car maintenance history`
 --
 ALTER TABLE `car maintenance history`
-  ADD PRIMARY KEY (`Car`);
+  ADD PRIMARY KEY (`VIN`);
 
 --
 -- Indexes for table `car rental history`
 --
 ALTER TABLE `car rental history`
-  ADD PRIMARY KEY (`Car`,`MemberID`,`Date`);
+  ADD PRIMARY KEY (`VIN`,`MemberID`,`Date`);
 
 --
 -- Indexes for table `ktcs members`
