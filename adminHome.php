@@ -55,6 +55,28 @@ $query = "";
 </form>
 
 <!-- Show car rental history -->
+
+<?php
+if(isset($_POST['carHistBtn'])){
+$hiThere = $_POST["carID"];
+include_once 'config/connection.php';
+$query = "SELECT * FROM 'car rental history' WHERE Car= $hiThere";
+// http://php.net/manual/en/function.mysql-fetch-assoc.php
+$result = mysql_query($query);
+if(!result){
+	echo "Could not run ($query) from DB";
+	exit;
+}
+while($row = mysql_fetch_assoc($result)){
+	echo $row["Pick-up Odometer Reading"];
+	echo $row["Drop-off Odometer Reading"];
+	echo $row["Return Status"];
+	echo $row["MemberID"];
+	echo $row["Date"];
+}
+//$stmt = $con->prepare($query);	$stmt->bind_param('i', $_POST['carID']);
+}
+?>
 <form name='carHist' id='carHist' action='adminHome.php' method='post'>
     <table border='0'> 
       <tr>
@@ -71,6 +93,6 @@ $query = "";
     </table>
 </form>
 
-
+<!-- Check which cars need repairs -->
 </body>
 </html>

@@ -10,6 +10,7 @@
 <?php
 //Create a user session or resume an existing one
 session_start();
+mysql_query("USE ktcs");
 ?>
 
 <!-- Insert the user into our database -->
@@ -23,18 +24,42 @@ session_start();
   // include database connection
   // if you are in a session, and updateBtn is clicked
     include_once 'config/connection.php';
-	$query = "INSERT INTO ktcs members ('Name','Address','Phone Number','Email','DLN','Monthly Membership Fee') VALUES (?,?,?,?,?,?)";
-	// have a 30?
-    // update user table, set password = what you typed in
-	$stmt = $con->prepare($query);	// this is the error / next one
-	var_dump($query);
-	$stmt->bind_param("ssisii", $_POST['Name'], $_POST['Address'], $_POST['Phone Number'], $_POST['Email'], $_POST['DLN'],30);
-	// Execute the query
-        if($stmt->execute()){
-            echo "User was added. <br/>";
-        }else{
-            echo 'Unable to update record. Please try again. <br/>';
-        }
+	// Assign variables?
+	// http://www.inmotionhosting.com/support/edu/website-design/using-php-and-mysql/php-insert-database
+	// see whats in array
+	// foreach (array_keys($_POST) as $randy){
+	// 	echo "$randy";
+	// 	echo " ^ ";
+	// see the keys
+	// }
+
+	$users_Name = $_POST['Name'];
+	$users_Address = $_POST['Address'];
+	$users_Phone = $_POST['Phone_Number'];
+	$users_Email = $_POST['Email'];
+	$users_DLN = $_POST['DLN'];
+	$users_MMF = 30;
+	// haHAA hackers
+	$users_Name = mysql_real_escape_string($users_Name);
+	$users_Address = mysql_real_escape_string($users_Address);
+	//$users_Phone = mysql_real_escape_string($users_Phone);
+	$users_Email = mysql_real_escape_string($users_Email);
+	//$users_DLN = mysql_real_escape_string($users_DLN);
+	//$users_MMF = mysql_real_escape_string($users_MMF);
+
+	// $query = "INSERT INTO 'ktcs members'('Name','Address','Phone Number','Email','DLN','Monthly Membership Fee') VALUES ('$users_Name','$users_Address',$users_Phone,'$users_Email',$users_DLN,$users_MMF)";
+	$query = sprintf("INSERT INTO ktcs members('Name','Address','Phone Number','Email','DLN','Monthly Membership Fee') VALUES ('%s','%s',%d,'%s',%d,%d)",
+    ($users_Name),($users_Address),($users_Phone),($users_Email),($users_DLN),($users_MMF));
+	$result = mysql_query($query);
+	echo "hi";
+
+	//Error check verry nice
+	if (!$result) {
+    $message  = 'Invalid query: ' . mysql_error() . "\n";
+    $message .= 'Whole query: ' . $query;
+    die($message);
+}
+
  }
 
  // have a button that says return to login with these 3 lines under
@@ -82,11 +107,10 @@ session_start();
         <tr>
             <td></td>
             <td>
-                <input type='submit' name='newMemberBtn' id='newMemberBtn' value='Update' /> 
+                <input type='submit' name='newMemberBtn' id='newMemberBtn' value='Register' /> 
             </td>
         </tr>
     </table>
 </form>
-
 </body>
 </html>
