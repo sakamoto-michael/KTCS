@@ -40,29 +40,35 @@ session_start();
 	$users_Email = $_POST['Email'];
 	$users_DLN = $_POST['DLN'];
 	$users_MMF = 30;
+	$users_UName = $_POST['username'];
+	$users_pass = $_POST['password'];
 	// haHAA hackers
 	$users_Name = mysql_real_escape_string($users_Name);
 	$users_Address = mysql_real_escape_string($users_Address);
 	//$users_Phone = mysql_real_escape_string($users_Phone);
 	$users_Email = mysql_real_escape_string($users_Email);
+	$users_UName = mysql_real_escape_string($users_UName);
+	$users_pass = mysql_real_escape_string($users_pass);
 	//$users_DLN = mysql_real_escape_string($users_DLN);
 	//$users_MMF = mysql_real_escape_string($users_MMF);
 
 	// $query = "INSERT INTO 'ktcs members'('Name','Address','Phone Number','Email','DLN','Monthly Membership Fee') VALUES ('$users_Name','$users_Address',$users_Phone,'$users_Email',$users_DLN,$users_MMF)";
-	$query = sprintf("INSERT INTO `ktcs members`(`Name`,`Address`,`Phone Number`,`Email`,`DLN`,`Monthly Membership Fee`) VALUES ('%s','%s',%d,'%s',%d,%d)",
-    ($users_Name),($users_Address),($users_Phone),($users_Email),($users_DLN),($users_MMF));
+	$query = sprintf("INSERT INTO `ktcs members`(`Name`,`Address`,`Phone Number`,`Email`,`DLN`,`Monthly Membership Fee`, `username`, `password`) VALUES ('%s','%s',%d,'%s',%d,%d,'%s','%s')",
+    ($users_Name),($users_Address),($users_Phone),($users_Email),($users_DLN),($users_MMF),($users_UName),($users_pass));
     // echo $query;
 	// $result = $con($query); // dont use mysql_query use for db
 	$result = mysqli_query($con,$query);
 
 	//echo "hi";
 
+	$message = "User succesfully created";
+	echo "<script type='text/javascript'>alert('$message');</script>";
 	//Error check verry nice
-	if (!$result) {
-    $message  = 'Invalid query: ' . mysql_error() . "\n";
-    $message .= 'Whole query: ' . $query;
-    die($message);
-}
+	// if (!$result) {
+ //    $message  = 'Invalid query: ' . mysql_error() . "\n";
+ //    $message .= 'Whole query: ' . $query;
+ //    die($message);
+//}
 
  }
 
