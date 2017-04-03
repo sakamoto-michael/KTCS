@@ -111,6 +111,10 @@ if(isset($_POST['retCarBtn'])){
     </p>
      
 </form>
+<form style="padding-top:10px;" name='returnPrev' id='returnPrev' action='home.php' method='post'>
+    <!-- Submit -->
+    <input type='submit' name='returnBtn' id='returnBtn' value='Return' /> 
+</form>
 </div>
 </div>
 </div>

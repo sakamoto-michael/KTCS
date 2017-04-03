@@ -37,7 +37,7 @@
 }
     if ($result = $con->query($query)){
         while ($row = $result->fetch_assoc()){
-            printf("%s(%d), rating %d/10, comment: %s, comment ID: %d, admin reply: %s", $row["Model"],$row["VIN"],$row["Rating"],$row["Comment Text"],$row["commentID"],$row["adminReply"]);
+            printf("%s(%d), Rating %d/10, Comment: %s, Comment ID: %d, Admin Reply: %s", $row["Model"],$row["VIN"],$row["Rating"],$row["Comment Text"],$row["commentID"],$row["adminReply"]);
             echo "<br>";
         }
     }
@@ -67,34 +67,21 @@
  }
 ?>
 
-<h4>Reply to a comment</h4>
+<h1 style="padding-bottom:30px;">Reply to a comment</h1>
 <form name='reply' id='reply' action='admReply.php' method='post'>
-    <table border='0'>
-
-        <tr>
-        <tr>
-        	<td>Enter a comment ID to reply to</td>
-            <td><input type='text' name='repComID' id='repComID'/></td>
-        </tr>
-
-        <tr>
-            <td>Enter your reply</td>
-            <td><input type='text' name='adReply' id='adReply'/></td>
-        </tr>
-        </tr>
-
-        <!-- Submit -->
-        <tr>
-            <td></td>
-            <td>
-                <input type='submit' name='replyBtn' id='replyBtn' value='Check' /> 
-            </td>
-        </tr>
-
-    </table>
+    <p>
+        <label>Enter a comment ID to reply to</label>
+        <input type='text' name='repComID' id='repComID'/>
+    </p>
+    <p>
+        <label>Enter your reply:</label>
+        <input type='text' name='adReply' id='adReply'/>
+    </p>
+    <!-- Submit -->
+    <input type='submit' name='replyBtn' id='replyBtn' value='Submit Reply' /> 
 </form>
 
-<form name='returnPrev' id='returnPrev' action='adminHome.php' method='post'>
+<form style="padding-top:20px;" name='returnPrev' id='returnPrev' action='adminHome.php' method='post'>
     <input type='submit' name='returnBtn' id='returnBtn' value='Return' /> 
 </form>
 </div>

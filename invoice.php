@@ -72,7 +72,7 @@ if(isset($_POST['invoiceBtn'])){
 ?>
 
 <form name='invoice' id='invoice' action='invoice.php' method='post'>
-        <label style="color:#000;">Enter the Member ID:</label>
+        <label style="color:#000;">Enter the Member DLN:</label>
         <td><input type='text' name='memberID' id='memberID'/></td>
         <label style="color:#000;">Enter the Date:</label>
         <td><input type='text' name='currentDate' id='currentDate'/></td>

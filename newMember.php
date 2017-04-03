@@ -72,7 +72,7 @@ session_start();
 
 	//echo "hi";
 
-	$message = "User succesfully created";
+	$message = "Successfully Registered!";
 	echo "<script type='text/javascript'>alert('$message');</script>";
 	//Error check verry nice
 	// if (!$result) {

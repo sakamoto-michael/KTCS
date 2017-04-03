@@ -88,7 +88,7 @@ if(isset($_POST['loginBtn'])){
 	echo $adminPerm;
     if ($adminPerm == 0) {
     	// if a normal user
-    	header("Location: locations.php"); // change this to go to some main page user
+    	header("Location: home.php"); // change this to go to some main page user
 		die("Lul died");
     }
     else{ // else they are an admin

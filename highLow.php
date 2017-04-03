@@ -54,19 +54,25 @@ if(isset($_POST['mostPopBtn'])){
 
 <h3>Least Popular:</h3>
 <?php 
-$model;
-$VIN;
-$totalCount;
+$model1;
+$VIN1;
+$totalCount1;
 if(isset($_POST['leastPopBtn'])){
-	$query = "SELECT `Model`,`VIN`,`totalCount` FROM `car` NATURAL JOIN (SELECT `VIN`,MIN(`hi`) AS totalCount FROM (SELECT `VIN`, COUNT(`VIN`) as hi FROM `car rental history` GROUP BY `VIN` ORDER BY `hi` ASC) AS getCount) AS getMax";
-	$result = mysqli_query($con,$query);
-	while ($row = $result->fetch_assoc()){
- 			$model = $row["Model"]; // this gets it lmao
- 			$VIN = $row["VIN"];
- 			$totalCount = $row["totalCount"];
+	$query = "SELECT `Model`,`VIN`,`totalCount` FROM `car` NATURAL JOIN (SELECT `VIN`,`hi` AS totalCount FROM (SELECT `VIN`, COUNT(`VIN`) as hi FROM `car rental history` GROUP BY `VIN` ORDER BY `hi` DESC) AS getCount) AS getMax";
+	$resultL = mysqli_query($con,$query);
+    if(mysqli_num_rows($resultL) == 0){
+        echo "Multiple least popular cars";
+    }
+    else{
+	while ($row1 = $resultL->fetch_assoc()){
+ 			$model1 = $row1["Model"]; // this gets it lmao
+ 			$VIN1 = $row1["VIN"];
+ 			$totalCount1 = $row1["totalCount"];
  		}
-	echo "Least Popular Car: $model | VIN: $VIN | Number of times rented: $totalCount";
+ 
+	echo "Least Popular Car: $model1 | VIN: $VIN1 | Number of times rented: $totalCount1";
 	}
+}
 ?>
 
 <form name='leastPopular' id='leastPopular' action='highLow.php' method='post'>

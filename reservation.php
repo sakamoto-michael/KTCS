@@ -59,8 +59,8 @@ if(isset($_POST['returnBtn'])){
     $availableDate = $_POST['available'];
     $availableDate = mysql_real_escape_string($availableDate);
 
-    //$query = "SELECT DISTINCT Model,VIN,Location FROM `car`,`reservation` WHERE car.VIN = reservation.Car AND reservation.Date > '$availableDate'";
-    $query = "SELECT `Model`, `VIN`, `Location` FROM `car` NATURAL JOIN `reservation` WHERE `VIN` NOT IN (SELECT `VIN` FROM `reservation` WHERE  '$availableDate' >= reservation.Date AND '$availableDate' <= reservation.dropDate) GROUP BY `VIN`";
+    //$query = "SELECT DISTINCT Model,VIN,Address FROM `car`,`reservation` WHERE car.VIN = reservation.Car AND reservation.Date > '$availableDate'";
+   $query = "SELECT car.Model, car.VIN, car.Address FROM `car` LEFT JOIN (SELECT `Model`, `VIN`, `Address` FROM `car` NATURAL JOIN `reservation` WHERE `VIN` NOT IN (SELECT `VIN` FROM `reservation` WHERE  '$availableDate' >= reservation.Date AND '$availableDate' <= reservation.dropDate) GROUP BY `VIN`) as tableA ON car.VIN = tableA.VIN GROUP BY `VIN`";
     
     //printf($availableDate);
     $availResult = mysqli_query($con,$query);
@@ -70,7 +70,7 @@ if(isset($_POST['returnBtn'])){
     }
     if ($availResult = $con->query($query)){
         while ($row = $availResult->fetch_assoc()){
-            printf("Car model: %s, \t VIN: %d, \t Location: %s", $row["Model"],$row["VIN"],$row["Location"]);
+            printf("Car model: %s, \t VIN: %d, \t Location: %s", $row["Model"],$row["VIN"],$row["Address"]);
             echo "<br>";
         }
     }
@@ -120,6 +120,7 @@ if(isset($_POST['returnBtn'])){
     //echo $query;
     // echo $query;
     // $result = $con($query); // dont use mysql_query use for db
+    echo "Reservation Number: $users_UName";
     $result = mysqli_query($con,$query);
 
     //Error check verry nice
@@ -160,19 +161,19 @@ if(isset($_POST['returnBtn'])){
              <td><input type='text' name='car' id='car'/></td>
         </p>
         <p>
-            <td>Enter Pickup Date</td>
+            <td>Enter Pickup Date (YYYY-MM-DD):</td>
             <td><input type='text' name='pick' id='pick'/></td>
         </p>
         <p>
-            <td>Enter Drop-off Date</td>
+            <td>Enter Drop-off Date:</td>
              <td><input type='text' name='drop' id='drop'/></td>
         </p>
         <p>
-            <td>Enter Your ID</td>
+            <td>Enter Your DLN:</td>
             <td><input type='text' name='memID' id='memID' /></td>
         </p>
         <p>
-            <td>Enter Reservation Length</td>
+            <td>Enter Reservation Length (Days):</td>
             <td><input type='text' name='days' id='days' /></td>
         </p>
         <!-- Submit -->
