@@ -102,7 +102,7 @@ die();
 
     <h3>No Feedback</h3>
     <form name='noFeedback' id='noFeedback' action='rentalFeedback.php' method='post'>
-        <input type='submit' name='noFeedbackBtn' id='noFeedbackBtn' value='No Feedback' /> 
+        <input type='submit' name='noFeedbackBtn' id='noFeedbackBtn' value='No feedback' /> 
     </form>
     </div>
 </div>

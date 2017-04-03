@@ -54,10 +54,10 @@
 				</div>
 			</div>
 			</a>
-			<a href="cars.php">
+			<a href="reservation.php">
 			<div class="col-md-5 feature-box wow fadeIn" data-wow-delay="1s">
 				<div class="inner text-center">
-					<p><b>Cars</b></p>
+					<p><b>Reserve A Car</b></p>
 					<i class="fa fa-car fa-5x" aria-hidden="true"></i>
 				</div>
 			</div>
@@ -90,7 +90,7 @@
 				</div>
 			</div>
 			</a>
-			<a href="#">
+			<a href="index.php">
 			<div class="col-md-5 feature-box wow fadeIn" data-wow-delay="1.8s">
 				<div class="inner text-center">
 					<p><b>Logout</b></p>

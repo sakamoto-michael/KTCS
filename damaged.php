@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
-    <head>
+<head>
+        <title>Check Damaged Cars</title>
   		<!-- Returns all of the locations that KTCS has  -->
   		<!-- finished i think -->
         <meta charset="utf-8">
@@ -8,7 +9,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
         <meta name="description" content="Kingston Car Share (K-Town Car Share)">
         <meta name="author" content="Michael Sakamoto, Ito (Jose) Matsuda, Jack (Yilun) Xiao">
-        <title>KTCS Locations</title>
 
         <!-- Bootstrap Base CSS -->
          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -20,53 +20,56 @@
          <link rel="stylesheet" type="text/css" href="css/main.css">
         <!-- Page Fonts -->
          <link href="https://fonts.googleapis.com/css?family=Quicksand:300" rel="stylesheet">
-    </head>
+</head>
 <body>
+<div class="container-fluid locations">
+<div class="row text-center">
+<div class="col-md-12">
+<h1 style="padding-top:30px;padding-bottom:30px;"> Damaged Cars </h1>
 
 <?php
 //Create a user session or resume an existing one
 session_start();
 ?>
-<div class="container-fluid locations">
-<div class="row">
-<div class="col-md-12 location-area">
-    <h1>Current KTCS Locations</h1>
 
 <?php
-  // include database connection
-    include_once 'config/connection.php'; 
-	$query = "SELECT * FROM `parking location`";
-	// http://php.net/manual/en/mysqli-result.fetch-assoc.php
-    $result = mysqli_query($con,$query);
-
-    // error check
-    if (!$result) {
-    echo "Could not successfully run query ($query) from DB: " . mysql_error();
-    exit;
+include_once 'config/connection.php';
+ $testString='damage'; // eh
+ $VIN;
+ $comment;
+ if(isset($_POST['damageBtn'])){
+ $query = "SELECT `VIN`,`Return Status` FROM `car rental history` WHERE `Return Status` LIKE '%damage%'";
+ $result = mysqli_query($con,$query);
+ while ($row = $result->fetch_assoc()){
+ 	$VIN = $row["VIN"];
+ 	$comment = $row["Return Status"];
+ 	echo "VIN: $VIN is damaged. Full report is";
+ 	echo "<br>";
+ 	echo "$comment";
+ 	echo "<br>";
+	}
 }
-	if ($result = $con->query($query)){
-		while ($row = $result->fetch_assoc()){
-			printf("Address: %s \t; Spaces Available: (%d)", $row["Address"],$row["Number of Spaces"]);
-			echo "<br>";
-		}
-	}
-	// optional clean up here if you want, go to site linked above
 ?>
 
-<?php
-if(isset($_POST['returnBtn'])){
-	session_destroy();
-	header("Location: home.php"); // or wherever you want it to return
-	die(); 
-	}
-?>
-
-<!-- Webpage Content -->
-
-    <form class="location-results" name='returnPrev' id='returnPrev' action='locations.php' method='post'>
+<form style="padding-top:10px;" name='damage' id='damage' action='damaged.php' method='post'>
         <!-- Submit -->
-        <input type='submit' name='returnBtn' id='returnBtn' value='Return Home' /> 
-    </form>
+        <tr>
+            <td></td>
+            <td>
+                <input type='submit' name='damageBtn' id='damageBtn' value='Check damaged cars' /> 
+            </td>
+        </tr>
+</form>
+
+<form style="padding-top:10px;" name='returnPrev' id='returnPrev' action='adminHome.php' method='post'>
+        <!-- Submit -->
+        <tr>
+            <td></td>
+            <td>
+                <input type='submit' name='returnBtn' id='returnBtn' value='Return' /> 
+            </td>
+        </tr>
+</form>
 </div>
 </div>
 </div>
