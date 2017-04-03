@@ -33,9 +33,6 @@
 			</div>
 			<div class="collapse navbar-collapse navbar-right navbar-main-collapse" id="nav-menu">
         		<ul class="nav navbar-nav">
-          			<li class="nav-item active">
-              			<a href="#">Logout</a>
-          			</li>
         		</ul>
       		</div>
 		</div>
@@ -90,6 +87,14 @@
 				<div class="inner text-center">
 					<p><b>Rental History</b></p>
 					<i class="fa fa-history fa-5x" aria-hidden="true"></i>
+				</div>
+			</div>
+			</a>
+			<a href="#">
+			<div class="col-md-5 feature-box wow fadeIn" data-wow-delay="1.8s">
+				<div class="inner text-center">
+					<p><b>Logout</b></p>
+					<i class="fa fa-sign-out fa-5x" aria-hidden="true"></i>
 				</div>
 			</div>
 			</a>
